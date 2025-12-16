@@ -16,6 +16,24 @@ public class Garage{
         return garagename;
     }
     public void setGaragename(String garagename){
-        this.id=id;
+        this.garagename=garagename;
+    }
+    public String getAddress(){
+        return address;
+    }
+    public void setAddress(String address){
+        this.address=address;
+    }
+    public String getContactNumber(){
+        return contactNumber;
+    }
+    public void setContactNumber(String contactNumber){
+        this.contactNumber=contactNumber;
+    }
+    public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
     }
 }
