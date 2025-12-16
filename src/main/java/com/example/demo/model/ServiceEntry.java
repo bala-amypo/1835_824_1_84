@@ -52,8 +52,15 @@ public class ServiceEntry
     public String getDescription(){
         return description;
     }
-    public void set description(String vehicle){
-        this.vehicle=vehicle;
+    public void setDescription(String vehicle){
+        this.description=description;
+    }
+
+    public Timestamp getRecordedAt(){
+        return recordedAt;
+    }
+    public void setRecordedAt(Timestamp recordedAt){
+        this.recordedAt=recordedAt;
     }
 
 }
