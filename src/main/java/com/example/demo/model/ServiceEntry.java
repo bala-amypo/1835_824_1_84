@@ -14,11 +14,30 @@ public class ServiceEntry{
     }
     public void setId(long id){
         this.id=id;
+    }
+    
+    public String getVehicle(){
+        return vehicle;
+    }
+    public void setVehicle(String vehicle){
+        this.vehicle=vehicle;
 
      public String getGarage(){
-        return garagen;
+        return garage;
     }
-    public void setGarage(String garagename){
-        this.garagename=garagename;
+    public void setGarage(String garage){
+        this.garage=garage;
     }   
+
+    public String getServiceType(){
+        return serviceType;
+    }
+    public void setServiceType(String serviceType){
+        this.serviceType=serviceType;
+
+   public Date getServiceDate(){
+        return serviceDate;
+    }
+    public void setServiceDate(Date serviceDate){
+        this.serviceDate=serviceDate; 
 }
