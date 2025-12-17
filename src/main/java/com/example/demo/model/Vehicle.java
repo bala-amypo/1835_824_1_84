@@ -1,6 +1,7 @@
 package com.example.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.sql.Timestamp;
 @Entity
 public class Vehicle{
     @Id
@@ -69,7 +70,7 @@ public class Vehicle{
         this.createdAt=createdAt;
     }
 
-     public Vehicle(Long id, String vin, String make, String model,Integer year, Long ownerId, Boolean active Timestamp createdAt){
+     public Vehicle(Long id, String vin, String make, String model, Long year, Long ownerId, Boolean active Timestamp createdAt){
         this.id=id;
         this.vin=vin;
         this.make=make;
