@@ -7,7 +7,7 @@ public class Vehicle{
     private Integer year;
     private Long ownerId;
     private Boolean active;
-    private Timestamp createdAt;
+    private Timestamp createdAt=new;
 
     public Long getId(){
         return id;
@@ -44,10 +44,24 @@ public class Vehicle{
         this.year=year;
     }
 
-     public Long getVin(){
-        return vin;
+     public Long getOwnerId(){
+        return ownerId;
     }
-    public void setVin(Long vin){
-        this.vin=vin;
+    public void setOwnerId(Long ownerId){
+        this.ownerId=ownerId;
+    }
+
+      public Boolean getActive(){
+        return active;
+    }
+    public void setActive(Boolean active){
+        this.active=active;
+    }
+
+     public Timestamp getRecordedAt(){
+        return recordedAt;
+    }
+    public void setRecordedAt(Timestamp recordedAt){
+        this.recordedAt=recordedAt;
     }
 }
