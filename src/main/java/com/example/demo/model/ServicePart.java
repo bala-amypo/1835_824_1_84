@@ -35,10 +35,17 @@ public class ServicePart{
         this.partNumber=partNumber;
     }
 
-    public String getVehicle(){
-        return vehicle;
+    public BigDecimal getCost(){
+        return cost;
     }
-    public void setVehicle(String vehicle){
+    public void setCost(BigDecimal cost){
+        this.cost=cost;
+    }
+
+    public Integer getQuantity(){
+        return quantity;
+    }
+    public void setQuantity(Integer vehicle){
         this.vehicle=vehicle;
     }
 }
