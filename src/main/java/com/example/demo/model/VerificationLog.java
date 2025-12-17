@@ -21,9 +21,23 @@ public class VerificationLog{
     }
 
      public Timestamp getVerifiedAt(){
-        return recordedAt;
+        return verifiedAt;
     }
-    public void setRecordedAt(Timestamp recordedAt){
-        this.recordedAt=recordedAt;
+    public void setVerifiedAt(Timestamp verifiedAtAt){
+        this.verifiedAt=verifiedAt;
+    }
+
+    public Boolean getVerifiedbySystem(){
+        return verifiedbySystem;
+    }
+    public void setVerifiedbySystem(Boolean verifiedbySystem){
+        this.verifiedbySystem=verifiedbySystem;
+    }
+
+    public String getNotes(){
+        return notes;
+    }
+    public void setNotes(String notes){
+        this.notes=notes;
     }
 }
