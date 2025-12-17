@@ -52,4 +52,7 @@ public class Garage{
         this.createdAt=createdAt;
     }
     public garage()
+    {
+        
+    }
 }

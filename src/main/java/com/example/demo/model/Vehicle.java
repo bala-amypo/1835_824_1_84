@@ -68,4 +68,6 @@ public class Vehicle{
     public void setRecordedAt(Timestamp recordedAt){
         this.recordedAt=recordedAt;
     }
+
+    
 }
