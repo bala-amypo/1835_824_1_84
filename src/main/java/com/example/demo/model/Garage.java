@@ -41,7 +41,7 @@ public class Garage{
         this.active=active;
     }
 
-    public garage(Long id, String garagename, String address, String contactNumber, Boolean active ){
+    public Garage(Long id, String garagename, String address, String contactNumber, Boolean active ){
         this.id=id;
         this.garagename=garagename;
          this.address=address;
@@ -49,7 +49,7 @@ public class Garage{
          this.active=active;
      }
 
-    public garage(){
+    public Garage(){
 
      }
 }
