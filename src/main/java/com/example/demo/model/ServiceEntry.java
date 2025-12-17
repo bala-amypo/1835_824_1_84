@@ -4,6 +4,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import java.sql.Timestamp; 
+import java.util.Date;
 @Entity
 public class ServiceEntry{
     @Id
@@ -59,7 +60,7 @@ public class ServiceEntry{
     public String getDescription(){
         return description;
     }
-    public void setDescription(String vehicle){
+    public void setDescription(String description){
         this.description=description;
     }
 
