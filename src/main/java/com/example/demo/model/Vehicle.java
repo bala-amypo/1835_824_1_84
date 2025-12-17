@@ -1,9 +1,9 @@
 // package com.example.demo.model;
-// import.jakarta.persistence.Entity;
-// import.jakarta.persistence.Id;
+// import jakarta.persistence.Entity;
+// import jakarta.persistence.Id;
 // @Entity
 // public class Vehicle{
-//     @ID
+//     @Id
 //     private Long id;
 //     private String vin;
 //     private String make;
@@ -69,7 +69,7 @@
 //         this.createdAt=createdAt;
 //     }
 
-//      public garage(Long id, String vin, String make, String model,Integer year, Long ownerId, Boolean active Timestamp createdAt){
+//      public Vehicle(Long id, String vin, String make, String model,Integer year, Long ownerId, Boolean active Timestamp createdAt){
 //         this.id=id;
 //         this.vin=vin;
 //         this.make=make;
@@ -80,7 +80,7 @@
 //         this.createdAt=createdAt;
 //     }
 
-//     public garage(){
+//     public Vehicle(){
 
 //     }
 // }
