@@ -72,7 +72,7 @@ public class Vehicle{
         this.createdAt=createdAt;
     }
 
-     public Vehicle(Long id, String vin, String make, String model, Integer year, Long ownerId, Boolean active Timestamp createdAt){
+     public Vehicle(Long id, String vin, String make, String model, Integer year, Long ownerId, Boolean active, Timestamp createdAt){
         this.id=id;
         this.vin=vin;
         this.make=make;
@@ -83,4 +83,6 @@ public class Vehicle{
         this.createdAt=createdAt;
     }
 
+    public Vehicle(){
+    }
 }
