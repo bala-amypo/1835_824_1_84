@@ -1,11 +1,12 @@
 package com.example.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.math.BigDecimal;
 @Entity
 public class ServicePart{
     @Id
     private Long id;
-    private String serviceType;
+    private String serviceEntry;
     private String partName;
     private String partNumber;
     private BigDecimal cost;
@@ -35,7 +36,7 @@ public class ServicePart{
     public String getPartNumber(){
         return partNumber;
     }
-    public void setPartNumber(String vehicle){
+    public void setPartNumber(String partNumber){
         this.partNumber=partNumber;
     }
 
@@ -52,7 +53,7 @@ public class ServicePart{
     public void setQuantity(Integer quantity){
         this.quantity=quantity;
     }
-    public ServicePart(Long id,String serviceEntry,String partName,String partNumber,BigDecimal cost,Long quantity){
+    public ServicePart(Long id,String serviceEntry,String partName,String partNumber,BigDecimal cost,Integer quantity){
     this.id=id;
     this.serviceEntry=serviceEntry;
     this.partName=partName;
@@ -60,7 +61,7 @@ public class ServicePart{
     this.cost=cost;
     this.quantity=quantity;
     }
-    public ServicePart{
+    public ServicePart(){
 
 }
 }
