@@ -3,7 +3,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 @Entity
 public class ServicePart{
-    @ID
+    @Id
     private Long id;
     private String serviceType;
     private String partName;
@@ -59,5 +59,8 @@ public class ServicePart{
     this.partNumber=partNumber;
     this.cost=cost;
     this.quantity=quantity;
-    public 
+    }
+    public ServicePart{
+
+}
 }
