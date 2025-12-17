@@ -1,6 +1,7 @@
 package com.example.demo.model;
-@
+@Entity
 public class User{
+    @ID
     private Long id;
     private String email;
     private String password;
