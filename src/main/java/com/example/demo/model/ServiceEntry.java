@@ -1,11 +1,13 @@
 package com.example.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import java.sql.Timestamp; 
 @Entity
-public class ServiceEntry
-@ID
-{
+public class ServiceEntry{
+    @Id
+     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String vehicle;
     private String garage;
