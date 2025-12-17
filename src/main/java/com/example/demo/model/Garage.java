@@ -1,9 +1,9 @@
 package com.example.demo.model;
-import.jakarta.persistence.Entity;
-import.jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 @Entity
 public class Garage{
-    @ID
+    @Id
     private Long id;
     private String garagename;
     private String address;
