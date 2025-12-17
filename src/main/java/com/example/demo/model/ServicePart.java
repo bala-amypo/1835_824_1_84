@@ -45,7 +45,7 @@ public class ServicePart{
     public Integer getQuantity(){
         return quantity;
     }
-    public void setQuantity(Integer vehicle){
-        this.vehicle=vehicle;
+    public void setQuantity(Integer quantity){
+        this.quantity=quantity;
     }
 }
