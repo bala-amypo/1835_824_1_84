@@ -34,4 +34,11 @@ public class ServicePart{
     public void setPartNumber(String vehicle){
         this.partNumber=partNumber;
     }
+
+    public String getVehicle(){
+        return vehicle;
+    }
+    public void setVehicle(String vehicle){
+        this.vehicle=vehicle;
+    }
 }
