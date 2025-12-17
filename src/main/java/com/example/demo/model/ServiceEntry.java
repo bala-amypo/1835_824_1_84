@@ -15,12 +15,12 @@ public class ServiceEntry{
     private Date serviceDate;
     private Integer odometerReading;
     private String description;
-    private Timestamp recordedAt=new;
+    private Timestamp recordedAt=new Timestamp(System.currentTimeMillis());
 
     public Long getId(){
         return id;
     }
-    public void setId(long id){
+    public void setId(Long id){
         this.id=id;
     }
     
@@ -79,7 +79,7 @@ public class ServiceEntry{
     this.description=description;
     this.recordedAt=recordedAt;
  }
- public ServiceEntry{
+ public ServiceEntry(){
 
  }
 }
