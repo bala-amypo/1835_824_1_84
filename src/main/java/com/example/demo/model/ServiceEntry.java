@@ -1,6 +1,7 @@
 package com.example.demo.model;
-import.jakarta.persistence.Entity;
-import.jakarta.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import java.sql.Timestamp; 
 @Entity
 public class ServiceEntry
 @ID
@@ -75,6 +76,9 @@ public class ServiceEntry
     this.odometerReading=odometerReading;
     this.description=description;
     this.recordedAt=recordedAt;
+ }
+ public ServiceEntry{
+
  }
 }
 
