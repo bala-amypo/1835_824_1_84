@@ -1,7 +1,9 @@
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.sql.Timestamp;
+
 @Entity
 public class Vehicle{
     @Id
@@ -12,7 +14,7 @@ public class Vehicle{
     private Integer year;
     private Long ownerId;
     private Boolean active;
-    private Timestamp createdAt=new;
+    private Timestamp createdAt=new Timestamp(System.currentTimeMillis());
 
     public Long getId(){
         return id;
@@ -45,7 +47,7 @@ public class Vehicle{
      public Integer getYear(){
         return year;
     }
-    public void setyear(Integer year){
+    public void setYear(Integer year){
         this.year=year;
     }
 
@@ -70,7 +72,7 @@ public class Vehicle{
         this.createdAt=createdAt;
     }
 
-     public Vehicle(Long id, String vin, String make, String model, Long year, Long ownerId, Boolean active Timestamp createdAt){
+     public Vehicle(Long id, String vin, String make, String model, Integer year, Long ownerId, Boolean active Timestamp createdAt){
         this.id=id;
         this.vin=vin;
         this.make=make;
@@ -81,7 +83,4 @@ public class Vehicle{
         this.createdAt=createdAt;
     }
 
-    public Vehicle(){
-
-    }
 }
