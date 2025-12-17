@@ -1,5 +1,9 @@
 package.com.example.demo.model;
+import.jakarta.persistence.Entity;
+import.jakarta.persistence.Id;
+@Entity
 public class VerificationLog{
+    @ID
     private Long id;
     private String ServiceEntry;
     private Timestamp verifiedAt=new;
