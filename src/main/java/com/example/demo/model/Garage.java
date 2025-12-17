@@ -25,7 +25,7 @@ public class Garage{
     public String getAddress(){
         return address;
     }
-    public void setAddress(String address){
+    public void setAddress(String address){ 
         this.address=address;
     }
     public String getContactNumber(){
@@ -39,5 +39,11 @@ public class Garage{
     }
     public void setActive(Boolean active){
         this.active=active;
+    }
+
+    public garage(Long id, String vin, String make, String model,Integer year, Long ownerId, Boolean active Timestamp createdAt){
+        this.id=id;
+        this.vin=vin;
+        
     }
 }
