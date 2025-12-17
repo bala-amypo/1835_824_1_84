@@ -44,6 +44,12 @@ public class Garage{
     public garage(Long id, String vin, String make, String model,Integer year, Long ownerId, Boolean active Timestamp createdAt){
         this.id=id;
         this.vin=vin;
-        
+        this.make=make;
+        this.model=model;
+        this.year=year;
+        this.ownerId=ownerId;
+        this.active=active;
+        this.createdAt=createdAt;
     }
+    public garage()
 }
