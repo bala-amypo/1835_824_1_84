@@ -1,4 +1,5 @@
 package com.example.demo.model;
+
 public class Garage{
     private Long id;
     private String garagename;
