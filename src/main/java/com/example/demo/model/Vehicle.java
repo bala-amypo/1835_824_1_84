@@ -37,10 +37,17 @@ public class Vehicle{
         this.model=model;
     }
 
-     public St getYear(){
+     public Integer getYear(){
+        return year;
+    }
+    public void setyear(Integer year){
+        this.year=year;
+    }
+
+     public Long getVin(){
         return vin;
     }
-    public void setVin(String vin){
+    public void setVin(Long vin){
         this.vin=vin;
     }
 }
