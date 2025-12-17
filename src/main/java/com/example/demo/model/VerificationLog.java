@@ -1,6 +1,7 @@
 package.com.example.demo.model;
 import.jakarta.persistence.Entity;
 import.jakarta.persistence.Id;
+import java.sql.Timestamp; 
 @Entity
 public class VerificationLog{
     @ID
@@ -49,7 +50,7 @@ public class VerificationLog{
     this.serviceEntry=serviceEntry;
     this.verifiedAt=verifiedAt;
     this.verifiedBySystem=verifiedBySystem;
-    
+    this.notes=notes;
 }
     public VerificationLog{
 
