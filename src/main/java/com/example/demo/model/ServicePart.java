@@ -22,8 +22,8 @@ public class ServicePart{
     public String getServiceType(){
         return serviceType;
     }
-    public void setServiceType(String serviceType){
-        this.serviceType=serviceType;
+    public void setServiceEntry(String serviceEntry){
+        this.serviceEntry=serviceEntry;
     }
 
     public String getPartName(){
