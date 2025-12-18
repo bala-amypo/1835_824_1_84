@@ -19,8 +19,8 @@ public class ServicePart{
         this.id=id;
     }
 
-    public String getServiceType(){
-        return serviceType;
+    public String getServiceEntry(){
+        return serviceEntry;
     }
     public void setServiceEntry(String serviceEntry){
         this.serviceEntry=serviceEntry;
