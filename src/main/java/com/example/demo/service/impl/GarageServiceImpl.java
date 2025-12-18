@@ -7,4 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
-public class 
+public class GarageServiceImpl implements GarageService{
+
+@Autowired
+GarageRepository gr;
+public Garage createGarage(Garage gar){
+
+    return gr.save(gar);
+}
+
+
+}
