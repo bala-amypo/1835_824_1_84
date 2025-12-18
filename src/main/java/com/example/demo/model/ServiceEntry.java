@@ -8,7 +8,7 @@ import java.util.Date;
 @Entity
 public class ServiceEntry{
     @Id
-     @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String vehicle;
     private String garage;
