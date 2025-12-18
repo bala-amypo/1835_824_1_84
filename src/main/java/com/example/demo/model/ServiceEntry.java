@@ -70,7 +70,8 @@ public class ServiceEntry{
     public void setRecordedAt(Timestamp recordedAt){
         this.recordedAt=recordedAt;
     }
- public ServiceEntry(Long id,String vehicle,String garage,String serviceType,Date serviceDate,Integer odometerReading,String description,Timestamp recordedAt){
+ public ServiceEntry(Long id,String vehicle,String garage,String serviceType,Date serviceDate,Integer odometerReading,String description,Timestamp recordedAt)
+ {
     this.id=id;
     this.vehicle=vehicle;
     this.garage=garage;
