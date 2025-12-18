@@ -1,6 +1,6 @@
 package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.VerificationLogrepo;
-public interface Garagerepo extends JpaRepository<Garage,Long>{
+public interface VerificationLogrepo extends JpaRepository<VerificationLog,Long>{
 
 }
