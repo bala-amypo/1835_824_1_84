@@ -11,7 +11,7 @@ public class User{
     @Autowired
     User u;
     @PostMapping("/User")
-    public Garage addUser(@RequestBody User us){
+    public User addUser(@RequestBody User us){
         return u.createUser(us);
     }
 }

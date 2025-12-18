@@ -11,7 +11,7 @@ public class ServiceEntry{
     @Autowired
     ServiceEntryService ses;
     @PostMapping("/ServiceEntry")
-    public Garage adds(@RequestBody Garage ga){
-        return gs.createGarage(ga);
+    public ServiceEntry addServiceEntry(@RequestBody ServiceEntry se){
+        return ses.createServiceEntry(se);
     }
 }
