@@ -12,6 +12,6 @@ public class VerificationLog{
     VerificationLogService vls;
     @PostMapping("/VerificationLog")
     public VerificationLog addVerificationLog(@RequestBody VerificationLog vl){
-        return vls.createServiceEntry(vl);
+        return vls.createVerificationLog(vl);
     }
 }
