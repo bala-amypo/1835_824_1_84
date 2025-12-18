@@ -11,7 +11,7 @@ public class VerificationLog{
     @Autowired
     VerificationLogService vls;
     @PostMapping("/VerificationLog")
-    public VerificationLog addVerificationLog(@RequestBody ServiceEntry se){
-        return ses.createServiceEntry(se);
+    public VerificationLog addVerificationLog(@RequestBody VerificationLog vl){
+        return vls.createServiceEntry(vl);
     }
 }
