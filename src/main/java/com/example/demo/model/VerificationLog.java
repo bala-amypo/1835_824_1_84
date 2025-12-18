@@ -4,9 +4,9 @@ import jakarta.persistence.Id;
 import java.sql.Timestamp; 
 @Entity
 public class VerificationLog{
-    @ID
+    @Id
     private Long id;
-    private String ServiceEntry;
+    private String serviceEntry;
     private Timestamp verifiedAt=new Timestamp(System.currentTimeMillis());
     private Boolean verifiedbySystem;
     private String notes;
