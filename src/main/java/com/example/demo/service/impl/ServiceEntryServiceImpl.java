@@ -11,9 +11,9 @@ public class ServiceEntryServiceImpl implements ServiceEntryService{
 
 @Autowired
 ServiceEntryRepository ser;
-public ServiceEntry createServiceEntry(ServiceEntry g){
+public ServiceEntry createServiceEntry(ServiceEntry sen){
 
-    return gr.save(gar);
+    return ser.save(sen);
 }
 
 
