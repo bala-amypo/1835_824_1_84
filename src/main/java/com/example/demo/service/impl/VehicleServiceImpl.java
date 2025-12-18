@@ -11,7 +11,7 @@ public class VehicleServiceImpl implements VehicleService{
 
 @Autowired
 VehicleRepository vr;
-public Vehicle createUser(Vehicle v){
+public Vehicle createVehicle(Vehicle v){
 
     return vr.save(v);
 }

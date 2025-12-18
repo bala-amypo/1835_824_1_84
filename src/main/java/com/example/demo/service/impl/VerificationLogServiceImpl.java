@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
-public class UserServiceImpl implements UserService{
+public class VerificationLogServiceImpl implements VerificationLogService{
 
 @Autowired
-UserRepository ur;
-public User createUser(User u){
+VerificationLogRepository vlr;
+public VerificationLog createVerificationLog(VerificationLog vl){
 
-    return ur.save(u);
+    return vlr.save(vl);
 }
 
 
