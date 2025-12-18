@@ -1,0 +1,17 @@
+package com.example.demo.controller;
+import org.springframework.web.bind.annonation.RestController;
+import org.springframework.beans.factory.annonation.Autowired;
+import com.example.demo.entity.ServiceEntry;
+import com.example.demo.service.ServiceEntryService;
+import org.springframework.web.bind.annonation.PostMapping;
+import org.springframework.web.bind.annonation.RequestBody;
+
+@RestController
+public class ServiceEntry{
+    @Autowired
+    ServiceEntryService ses;
+    @PostMapping("/ServiceEntry")
+    public Garage adds(@RequestBody Garage ga){
+        return gs.createGarage(ga);
+    }
+}

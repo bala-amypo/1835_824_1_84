@@ -10,7 +10,7 @@ import org.springframework.web.bind.annonation.RequestBody;
 public class Garage{
     @Autowired
     GarageService gs;
-    @PostMapping("/UserProfile")
+    @PostMapping("/Garage")
     public Garage addGarage(@RequestBody Garage ga){
         return gs.createGarage(ga);
     }

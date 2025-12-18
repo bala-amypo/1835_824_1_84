@@ -10,8 +10,8 @@ import org.springframework.web.bind.annonation.RequestBody;
 public class User{
     @Autowired
     User u;
-    @PostMapping("/UserProfile")
-    public Garage addGarage(@RequestBody Garage ga){
-        return gs.createGarage(ga);
+    @PostMapping("/User")
+    public Garage addUser(@RequestBody User us){
+        return u.createUser(us);
     }
 }
