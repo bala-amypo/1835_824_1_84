@@ -11,9 +11,9 @@ public class UserServiceImpl implements UserService{
 
 @Autowired
 UserRepository ur;
-public User createUser(User spa){
+public User createUser(User u){
 
-    return spr.save(spa);
+    return ur.save(u);
 }
 
 
