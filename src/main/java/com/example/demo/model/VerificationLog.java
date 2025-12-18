@@ -19,7 +19,7 @@ public class VerificationLog{
     }
 
      public String getServiceEntry(){
-        return ServiceEntry;
+        return serviceEntry;
     }
     public void setServiceEntry(String ServiceEntry){
         this.serviceEntry=serviceEntry;
