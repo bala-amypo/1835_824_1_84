@@ -4,7 +4,7 @@ import com.example.demo.entity.User;
 
 public interface UserService
 {
-     User createServiceEntry(User u);
+     User createUser(User u);
 
 
 }

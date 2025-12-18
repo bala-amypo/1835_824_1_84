@@ -4,7 +4,7 @@ import com.example.demo.entity.VerificationLog;
 
 public interface VerificationLogService
 {
-    VerificationLog createServiceEntry(ServiceEntry se);
+    VerificationLog createVerificationLog(VerificationLog vl);
 
 
 }
