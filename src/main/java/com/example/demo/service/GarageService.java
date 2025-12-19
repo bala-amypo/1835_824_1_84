@@ -1,10 +1,9 @@
 package com.example.demo.service;
-import jakarta.persistence.Service;
-import com.example.demo.model.Garage;
-@Service
-public interface Garage{
-    public Garage register(Garage garage);
+import com.example.demo.entity.Garage;
+
+public interface GarageService
+{
+    Garage createGarage(Garage ga);
 
 
-    public Garage findByEmail(String email);
 }
