@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class ServicePart{
+public class ServicePartController{
     @Autowired
-    ServicePartService sps;
+    private ServicePartService sps;
     @PostMapping("/ServicePart")
     public ServicePart addServicePart(@RequestBody ServicePart sp){
         return sps.createServicePart(sp);

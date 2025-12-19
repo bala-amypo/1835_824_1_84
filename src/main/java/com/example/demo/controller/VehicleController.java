@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class Vehicle{
+public class VehicleController{
     @Autowired
     VehicleService vs;
     @PostMapping("/Vehicle")

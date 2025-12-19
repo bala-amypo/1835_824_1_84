@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class ServiceEntry{
+public class ServiceEntryController{
     @Autowired
-    ServiceEntryService ses;
+    private ServiceEntryService ses;
     @PostMapping("/ServiceEntry")
     public ServiceEntry addServiceEntry(@RequestBody ServiceEntry se){
         return ses.createServiceEntry(se);
