@@ -9,8 +9,8 @@ import org.springframework.web.bind.annonation.RequestBody;
 @RestController
 public class AuthController{
     @Autowired
-    private UserService userService;
-    @PostMapping("/User")
+    private UserService u;
+    @PostMapping("/user")
     public User addUser(@RequestBody User us){
         return u.createUser(us);
     }
