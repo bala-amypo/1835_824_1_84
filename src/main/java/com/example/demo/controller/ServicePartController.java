@@ -1,10 +1,10 @@
 package com.example.demo.controller;
-import org.springframework.web.bind.annonation.RestController;
-import org.springframework.beans.factory.annonation.Autowired;
-import com.example.demo.entity.ServicePart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.model.ServicePart;
 import com.example.demo.service.ServicePartService;
-import org.springframework.web.bind.annonation.PostMapping;
-import org.springframework.web.bind.annonation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 public class ServicePart{
