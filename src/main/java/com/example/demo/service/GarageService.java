@@ -1,5 +1,5 @@
 package com.example.demo.service;
-import com.example.demo.entity.Garage;
+import com.example.demo.model.Garage;
 
 public interface GarageService
 {

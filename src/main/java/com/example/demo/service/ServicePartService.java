@@ -1,5 +1,5 @@
 package com.example.demo.service;
-import com.example.demo.entity.ServicePart;
+import com.example.demo.model.ServicePart;
 
 
 public interface ServicePartService

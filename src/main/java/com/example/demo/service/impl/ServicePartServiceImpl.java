@@ -1,6 +1,6 @@
 package com.example.demo.service.impl;
 import com.example.demo.repository.ServicePartRepository;
-import com.example.demo.entity.ServicePart;
+import com.example.demo.model.ServicePart;
 import com.example.demo.service.ServicePartService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
