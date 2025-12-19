@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-public class VerificationLog{
+public class VerificationLogController{
     @Autowired
-    VerificationLogService vls;
+    private VerificationLogService vls;
     @PostMapping("/VerificationLog")
     public VerificationLog addVerificationLog(@RequestBody VerificationLog vl){
         return vls.createVerificationLog(vl);

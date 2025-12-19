@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class VehicleController{
     @Autowired
-    VehicleService vs;
+   private VehicleService vs;
     @PostMapping("/Vehicle")
     public Vehicle addVehicle(@RequestBody Vehicle v){
         return vs.createVehicle(v);
