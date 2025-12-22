@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
+@RequestMapping
 public class GarageController{
     @Autowired
     private GarageService gs;
@@ -14,4 +15,6 @@ public class GarageController{
     public Garage addGarage(@RequestBody Garage ga){
         return gs.createGarage(ga);
     }
+    @PutMapping("/update")
+    public Garage 
 }

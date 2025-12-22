@@ -4,6 +4,6 @@ import com.example.demo.model.Garage;
 public interface GarageService
 {
     Garage createGarage(Garage ga);
-    
+    Garage updateGarage(Long id,Garage garage);
 
 }
