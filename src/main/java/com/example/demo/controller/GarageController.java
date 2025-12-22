@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping
@@ -18,8 +18,8 @@ public class GarageController{
     public Garage addGarage(@RequestBody Garage ga){
         return gs.createGarage(ga);
     }
-    @PutMapping("/update")
-    public Garage changeGarage(@RequestBody Long id,@RequestParam Garage garage){
+    @PutMapping("/{id}")
+    public Garage changeGarage(@PathVariable Long id,@RequestBody Garage garage){
         return gs.updateGarage(id,garage);
     }
 }

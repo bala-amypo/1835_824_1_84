@@ -16,7 +16,8 @@ public Garage createGarage(Garage gar){
     return gr.save(gar);
 }
 
- public ListGarage updateGarage(Long id,Garage garage){
+ public Garage updateGarage(Long id,Garage garage){
+     gr.setId(id);
     return gr.save(id,garage).orElse(null);
  }
 
