@@ -1,9 +1,10 @@
 package com.example.demo.service;
 import com.example.demo.model.Garage;
+import java.util.List;
 
 public interface GarageService
 {
     Garage createGarage(Garage ga);
-    Garage updateGarage(Long id,Garage garage);
+   List<Garage> updateGarage(Long id,Garage garage);
 
 }
