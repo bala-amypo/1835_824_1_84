@@ -16,5 +16,7 @@ public class GarageController{
         return gs.createGarage(ga);
     }
     @PutMapping("/update")
-    public Garage 
+    public Garage changeGarage(@RequestBody Long id,@RequestParam Garage garage){
+        return gs.updateGarage(id,garage);
+    }
 }
