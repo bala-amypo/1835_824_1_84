@@ -16,7 +16,7 @@ public Vehicle createVehicle(Vehicle v){
     return vr.save(v);
 }
 public Vehicle getVehicleById(Long id){
-    return vr.getyById(id);
+    return vr.findyById(id);
 }
 
 }
