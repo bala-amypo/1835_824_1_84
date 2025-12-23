@@ -5,6 +5,6 @@ import com.example.demo.model.Vehicle;
 public interface VehicleService
 {
     Vehicle createVehicle(Vehicle v);
-
+    Vehicle getVehicleById();
 
 }
