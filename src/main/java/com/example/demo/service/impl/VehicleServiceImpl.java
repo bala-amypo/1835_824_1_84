@@ -1,25 +1,49 @@
 package com.example.demo.service.impl;
+
 import com.example.demo.repository.VehicleRepository;
 import com.example.demo.model.Vehicle;
 import com.example.demo.service.VehicleService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
-public class VehicleServiceImpl implements VehicleService{
+public class VehicleServiceImpl implements VehicleService {
 
-@Autowired
-VehicleRepository vri;
-public Vehicle createVehicle(Vehicle v){
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
-    return vri.save(v);
-}
-public Vehicle getVehicleById(Long id){
-    return vri.findById(id).orElse(null);
-}
+    @Override
+    public Vehicle createVehicle(Vehicle vehicle) {
+        vehicle.setActive(true);
+        return vehicleRepository.save(vehicle);
+    }
 
-public  List<Vehicle> getVehiclesByOwner(String name){
-    return vri.findByVin(name);
-}
+    @Override
+    public Vehicle getVehicleById(Long id) {
+        return vehicleRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
+    }
+
+    @Override
+    public List<Vehicle> getVehicleByVin(String vin) {
+        return vehicleRepository.findByVin(vin);
+    }
+
+    @Override
+    public List<Vehicle> getVehiclesByOwner(Long ownerId) {
+        return vehicleRepository.findAll()
+                .stream()
+                .filter(v -> ownerId.equals(v.getOwnerId()))
+                .toList();
+    }
+
+    @Override
+    public Vehicle deactivateVehicle(Long id) {
+        Vehicle vehicle = getVehicleById(id);
+        vehicle.setActive(false);
+        return vehicleRepository.save(vehicle);
+    }
 }
