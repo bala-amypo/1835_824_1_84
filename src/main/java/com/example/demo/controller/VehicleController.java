@@ -22,7 +22,7 @@ public class VehicleController{
         return vs.getVehicleById(id);
     }
     @GetMapping("vin/{vin}")
-    public  Vehicle getByVin (@RequestParam string vin){
+    public  Vehicle getByVin (@RequestParam String vin){
         return vs.getVehiclesByOwner(vin);
     }
 }

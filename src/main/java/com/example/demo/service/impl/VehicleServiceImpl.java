@@ -19,7 +19,7 @@ public Vehicle getVehicleById(Long id){
     return vr.findById(id).orElse(null);
 }
 
-public   Vehicle getVehiclesByOwner(string vin){
-    return vr.findById(vin).orElse(null);
+public   Vehicle getVehiclesByOwner(String vin){
+    return vr.(vin).orElse(null);
 }
 }
