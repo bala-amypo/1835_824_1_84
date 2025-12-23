@@ -34,18 +34,18 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
     }
 
     @Override
-    public List<ServiceEntry> getEntriesForVehicle(Long vehicleId) {
+    public List<ServiceEntry> getEntriesForVehicle(String vehicle) {
         return repository.findAll()
                 .stream()
-                .filter(e -> e.getVehicleId().equals(vehicleId))
+                .filter(e -> e.getVehicle().equals(vehicle))
                 .toList();
     }
 
     @Override
-    public List<ServiceEntry> getEntriesByGarage(Long garageId) {
+    public List<ServiceEntry> getEntriesByGarage(String garage) {
         return repository.findAll()
                 .stream()
-                .filter(e -> e.getGarageId().equals(garageId))
+                .filter(e -> e.getGarage().equals(garage))
                 .toList();
     }
 }
