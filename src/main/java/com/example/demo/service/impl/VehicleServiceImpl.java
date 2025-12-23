@@ -4,7 +4,7 @@ import com.example.demo.model.Vehicle;
 import com.example.demo.service.VehicleService;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import java.util.List;
 
 @Service
 public class VehicleServiceImpl implements VehicleService{
@@ -19,7 +19,7 @@ public Vehicle getVehicleById(Long id){
     return vr.findById(id).orElse(null);
 }
 
-public   Vehicle getVehiclesByOwner(String vin){
-    return vr.getVehiclesByOwner(vin).orElse(null);
+public  List<Vehicle> getVehiclesByOwner(String vin){
+    return vr.findByOwner(vin).orElse(null);
 }
 }
