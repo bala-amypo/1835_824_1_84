@@ -27,8 +27,8 @@ public class AuthController {
 
     // GET /auth/login
     @GetMapping("/login")
-    public User login(@RequestParam String username,
+    public User login(@RequestParam String email,
                       @RequestParam String password) {
-        return userService.login(username, password);
+        return userService.login(email, password);
     }
 }
