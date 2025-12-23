@@ -19,5 +19,8 @@ public class VehicleController{
     public Vehicle getById(@PathVariable Long id){
         return vs.getVehicleById(id);
     }
-    @GetMapping("")
+    @GetMapping("vin/{vin}")
+    public  Vehicle getByVin (@RequestParam string vin){
+        return vs.getVehiclesByOwner(vin);
+    }
 }

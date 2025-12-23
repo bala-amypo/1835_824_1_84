@@ -20,6 +20,6 @@ public Vehicle getVehicleById(Long id){
 }
 
 public   Vehicle getVehiclesByOwner(string vin){
-    return vr.findB
+    return vr.findById(vin).orElse(null);
 }
 }
