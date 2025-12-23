@@ -18,7 +18,7 @@ public Vehicle createVehicle(Vehicle v){
 public Vehicle getVehicleById(Long id){
     return vri.findById(id).orElse(null);
 }
-
+@Query("")
 public  List<Vehicle> getVehiclesByOwner(String vin){
     return vri.findByOwner(vin);
 }
