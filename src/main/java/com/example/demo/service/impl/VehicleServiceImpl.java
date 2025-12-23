@@ -18,8 +18,9 @@ public Vehicle createVehicle(Vehicle v){
 public Vehicle getVehicleById(Long id){
     return vri.findById(id).orElse(null);
 }
-@Query("")
-public  List<Vehicle> getVehiclesByOwner(String vin){
-    return vri.findByOwner(vin);
+@Query("FROM Vehicle v where v.vin= :name")
+
+public  List<Vehicle> getVehiclesByOwner(String name){
+    return vri.findByOwner(name);
 }
 }
