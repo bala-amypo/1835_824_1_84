@@ -19,4 +19,5 @@ public class VehicleController{
     public Vehicle getById(@PathVariable Long id){
         return vs.getVehicleById(id);
     }
+    @GetMapping("")
 }

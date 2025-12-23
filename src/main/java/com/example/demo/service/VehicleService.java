@@ -6,7 +6,7 @@ public interface VehicleService
 {
     Vehicle createVehicle(Vehicle v);
     Vehicle getVehicleById(Long id);
-    // Vehicle getVehiclesByOwner(string vin);
+     Vehicle getVehiclesByOwner(string vin);
     // Vehicle getVehiclesByOwner(Long ownerId);
-    // Vehicle deactivateVehicle(Long id);
+     //Vehicle deactivateVehicle(Long id);
 }
