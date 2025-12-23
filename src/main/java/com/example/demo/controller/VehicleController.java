@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
+@RequestMapping("/api/Vehicle")
 public class VehicleController{
     @Autowired
    private VehicleService vs;
-    @PostMapping("/Vehicle")
+    @PostMapping("/add")
     public Vehicle addVehicle(@RequestBody Vehicle v){
         return vs.createVehicle(v);
     }
-    @GetMapping("/Vehicle/{id}")
+    @GetMapping("/{id}")
     public Vehicle getById(@PathVariable Long id){
         return vs.getVehicleById(id);
     }
