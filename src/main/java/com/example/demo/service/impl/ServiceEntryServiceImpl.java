@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -18,10 +19,12 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
 
     @Override
     public ServiceEntry createServiceEntry(ServiceEntry entry) {
-        if (entry.getServiceDate().isAfter(LocalDate.now())) {
-            throw new RuntimeException("future");
+        LocalDate serviceLocalDate = entry.getServiceDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        if (serviceLocalDate.isAfter(LocalDate.now())) {
+            throw new RuntimeException("Service date cannot be in the future");
         }
-
         return repository.save(entry);
     }
 
