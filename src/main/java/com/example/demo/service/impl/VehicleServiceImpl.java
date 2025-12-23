@@ -10,13 +10,13 @@ import java.util.List;
 public class VehicleServiceImpl implements VehicleService{
 
 @Autowired
-VehicleRepository vr;
+VehicleRepository vri;
 public Vehicle createVehicle(Vehicle v){
 
-    return vr.save(v);
+    return vri.save(v);
 }
 public Vehicle getVehicleById(Long id){
-    return vr.findById(id).orElse(null);
+    return vri.findById(id).orElse(null);
 }
 
 public  List<Vehicle> getVehiclesByOwner(String vin){
