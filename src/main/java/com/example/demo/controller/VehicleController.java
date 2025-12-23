@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 
 @RestController
 public class VehicleController{
@@ -21,8 +22,8 @@ public class VehicleController{
     public Vehicle getById(@PathVariable Long id){
         return vs.getVehicleById(id);
     }
-    @GetMapping("vin/{vin}")
-    public  Vehicle getByVin (@RequestParam String vin){
+    @GetMapping("/vin/{vin}")
+    public  List<Vehicle> getByVin (@RequestParam String vin){
         return vs.getVehiclesByOwner(vin);
     }
 }
