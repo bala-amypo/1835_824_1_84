@@ -20,6 +20,6 @@ public Vehicle getVehicleById(Long id){
 }
 
 public  List<Vehicle> getVehiclesByOwner(String name){
-    return vri.findByOwner(name);
+    return vri.findByVin(name);
 }
 }
