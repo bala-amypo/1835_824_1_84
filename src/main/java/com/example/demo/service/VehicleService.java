@@ -5,6 +5,8 @@ import com.example.demo.model.Vehicle;
 public interface VehicleService
 {
     Vehicle createVehicle(Vehicle v);
-    Vehicle getVehicleById();
-
+    Vehicle getVehicleById(Long id);
+    // Vehicle getVehiclesByOwner(string vin);
+    // Vehicle getVehiclesByOwner(Long ownerId);
+    // Vehicle deactivateVehicle(Long id);
 }
