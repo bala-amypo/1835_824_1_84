@@ -25,7 +25,7 @@ public class VehicleController{
         return vs.getVehicleById(id);
     }
     @GetMapping("/vin/{vin}")
-    public  List<Vehicle> getByVin (@RequestParam String vin){
+    public  List<Vehicle> getByVin (@PathVariable String vin){
         return vs.getVehiclesByOwner(vin);
     }
 }
