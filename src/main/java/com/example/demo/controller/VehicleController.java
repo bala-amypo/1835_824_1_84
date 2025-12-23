@@ -15,7 +15,7 @@ public class VehicleController{
     public Vehicle addVehicle(@RequestBody Vehicle v){
         return vs.createVehicle(v);
     }
-    @GetMapping("//vehicle/{id}")
+    @GetMapping("/Vehicle/{id}")
     public Vehicle getById(@PathVariable Long id){
         return vs.getVehicleById(id);
     }
