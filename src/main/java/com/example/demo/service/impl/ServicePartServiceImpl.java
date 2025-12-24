@@ -1,14 +1,4 @@
-package com.example.demo.service.impl;
 
-import com.example.demo.model.ServicePart;
-import com.example.demo.repository.ServicePartRepository;
-import com.example.demo.service.ServicePartService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ServicePartServiceImpl implements ServicePartService {
@@ -26,12 +16,11 @@ public class ServicePartServiceImpl implements ServicePartService {
 
     @Override
     public ServicePart getPartById(Long id) {
-        Optional<ServicePart> optionalPart = servicePartRepository.findById(id);
-        return optionalPart.orElse(null);
+        return servicePartRepository.findById(id).orElse(null);
     }
 
     @Override
     public List<ServicePart> getPartsForEntry(String serviceEntry) {
-        return servicePartRepository.findByEntryId(serviceEntry);
+        return servicePartRepository.findByServiceEntry(serviceEntry);
     }
 }
