@@ -1,53 +1,25 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.repository.GarageRepository;
 import com.example.demo.model.Garage;
+import com.example.demo.repository.GarageRepository;
 import com.example.demo.service.GarageService;
-
+import java.util.Optional;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 @Service
 public class GarageServiceImpl implements GarageService {
 
-    @Autowired
-    private GarageRepository garageRepository;
+    private final GarageRepository garageRepository;
 
-    @Override
+    public GarageServiceImpl(GarageRepository garageRepository) {
+        this.garageRepository = garageRepository;
+    }
+
     public Garage createGarage(Garage garage) {
-        garageRepository.findByGaragename(garage.getGaragename())
-                .ifPresent(g -> {
-                    throw new RuntimeException("Garage name already exists");
-                });
-        return garageRepository.save(garage);
-    }
-
-    @Override
-    public Garage updateGarage(Long id, Garage garage) {
-        Garage existing = getGarageById(id);
-        existing.setGaragename(garage.getGaragename());
-        existing.setAddress(garage.getAddress());
-        existing.setContactNumber(garage.getContactNumber());
-        return garageRepository.save(existing);
-    }
-
-    @Override
-    public Garage getGarageById(Long id) {
-        return garageRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Garage not found"));
-    }
-
-    @Override
-    public List<Garage> getAllGarages() {
-        return garageRepository.findAll();
-    }
-
-    @Override
-    public Garage deactivateGarage(Long id) {
-        Garage garage = getGarageById(id);
-        garage.setActive(false);
+        Optional<Garage> existing = garageRepository.findByGarageName(garage.getGarageName());
+        if (existing.isPresent()) {
+            throw new IllegalArgumentException("already exists");
+        }
         return garageRepository.save(garage);
     }
 }

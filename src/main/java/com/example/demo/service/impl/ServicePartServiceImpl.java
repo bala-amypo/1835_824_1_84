@@ -1,36 +1,33 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.ServicePart;
+import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.ServicePartRepository;
 import com.example.demo.service.ServicePartService;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ServicePartServiceImpl implements ServicePartService {
 
-    @Autowired
-    private ServicePartRepository servicePartRepository;
+    private final ServicePartRepository servicePartRepository;
+    private final ServiceEntryRepository serviceEntryRepository;
 
-    @Override
-    public ServicePart createServicePart(ServicePart servicePart) {
-        if (servicePart.getQuantity() <= 0) {
-            throw new IllegalArgumentException("Quantity must be greater than 0");
+    public ServicePartServiceImpl(ServicePartRepository servicePartRepository,
+                                  ServiceEntryRepository serviceEntryRepository) {
+        this.servicePartRepository = servicePartRepository;
+        this.serviceEntryRepository = serviceEntryRepository;
+    }
+
+    public ServicePart createPart(ServicePart part) {
+
+        serviceEntryRepository.findById(part.getServiceEntry().getId())
+                .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
+
+        if (part.getQuantity() <= 0) {
+            throw new IllegalArgumentException("Quantity");
         }
-        return servicePartRepository.save(servicePart);
-    }
 
-    @Override
-    public ServicePart getPartById(Long id) {
-        return servicePartRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<ServicePart> getPartsForEntry(String serviceEntry) {
-        return servicePartRepository.findByServiceEntry(serviceEntry);
+        return servicePartRepository.save(part);
     }
 }

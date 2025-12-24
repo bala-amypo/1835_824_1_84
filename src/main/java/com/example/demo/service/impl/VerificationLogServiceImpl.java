@@ -1,31 +1,31 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.model.VerificationLog;
+import com.example.demo.repository.ServiceEntryRepository;
+import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.service.VerificationLogService;
-
+import jakarta.persistence.EntityNotFoundException;
+import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import java.util.List;
 
 @Service
 public class VerificationLogServiceImpl implements VerificationLogService {
 
-    @Autowired
-    private VerificationLogRepository repository;
+    private final VerificationLogRepository verificationLogRepository;
+    private final ServiceEntryRepository serviceEntryRepository;
 
-    @Override
+    public VerificationLogServiceImpl(VerificationLogRepository verificationLogRepository,
+                                      ServiceEntryRepository serviceEntryRepository) {
+        this.verificationLogRepository = verificationLogRepository;
+        this.serviceEntryRepository = serviceEntryRepository;
+    }
+
     public VerificationLog createLog(VerificationLog log) {
-        return repository.save(log);
-    }
 
-    @Override
-    public VerificationLog getLogById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
+        serviceEntryRepository.findById(log.getServiceEntry().getId())
+                .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
 
-    @Override
-    public List<VerificationLog> getLogsForEntry(Long entryId) {
-        return repository.findByEntryId(entryId);
+        log.setVerifiedAt(LocalDateTime.now());
+        return verificationLogRepository.save(log);
     }
 }

@@ -1,51 +1,61 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.repository.ServiceEntryRepository;
+import com.example.demo.model.Garage;
 import com.example.demo.model.ServiceEntry;
+import com.example.demo.model.Vehicle;
+import com.example.demo.repository.GarageRepository;
+import com.example.demo.repository.ServiceEntryRepository;
+import com.example.demo.repository.VehicleRepository;
 import com.example.demo.service.ServiceEntryService;
-
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-
+import jakarta.persistence.EntityNotFoundException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
 
 @Service
 public class ServiceEntryServiceImpl implements ServiceEntryService {
 
-    @Autowired
-    private ServiceEntryRepository repository;
+    private final ServiceEntryRepository serviceEntryRepository;
+    private final VehicleRepository vehicleRepository;
+    private final GarageRepository garageRepository;
 
-    @Override
+    public ServiceEntryServiceImpl(ServiceEntryRepository serviceEntryRepository,
+                                   VehicleRepository vehicleRepository,
+                                   GarageRepository garageRepository) {
+        this.serviceEntryRepository = serviceEntryRepository;
+        this.vehicleRepository = vehicleRepository;
+        this.garageRepository = garageRepository;
+    }
+
     public ServiceEntry createServiceEntry(ServiceEntry entry) {
-        LocalDate serviceLocalDate = entry.getServiceDate().toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        if (serviceLocalDate.isAfter(LocalDate.now())) {
-            throw new RuntimeException("Service date cannot be in the future");
+
+        Vehicle vehicle = vehicleRepository.findById(entry.getVehicle().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
+
+        if (!vehicle.getActive()) {
+            throw new IllegalArgumentException("active vehicles");
         }
-        return repository.save(entry);
+
+        Garage garage = garageRepository.findById(entry.getGarage().getId())
+                .orElseThrow(() -> new EntityNotFoundException("Garage not found"));
+
+        if (entry.getServiceDate().isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("future");
+        }
+
+        Optional<ServiceEntry> last =
+                serviceEntryRepository.findTopByVehicleOrderByOdometerReadingDesc(vehicle);
+
+        if (last.isPresent() &&
+                entry.getOdometerReading() < last.get().getOdometerReading()) {
+            throw new IllegalArgumentException(">=");
+        }
+
+        return serviceEntryRepository.save(entry);
     }
 
-    @Override
-    public ServiceEntry getServiceEntryById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<ServiceEntry> getEntriesForVehicle(String vehicle) {
-        return repository.findAll()
-                .stream()
-                .filter(e -> e.getVehicle().equals(vehicle))
-                .toList();
-    }
-
-    @Override
-    public List<ServiceEntry> getEntriesByGarage(String garage) {
-        return repository.findAll()
-                .stream()
-                .filter(e -> e.getGarage().equals(garage))
-                .toList();
+    public List<ServiceEntry> getEntriesForVehicle(Long vehicleId) {
+        return serviceEntryRepository.findByVehicleId(vehicleId);
     }
 }
