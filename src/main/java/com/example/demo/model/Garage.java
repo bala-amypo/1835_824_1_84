@@ -29,7 +29,7 @@ public class Garage {
         this.active = active;
     }
 
-    // Getters & Setters
+   
     public Long getId() {
         return id;
     }
