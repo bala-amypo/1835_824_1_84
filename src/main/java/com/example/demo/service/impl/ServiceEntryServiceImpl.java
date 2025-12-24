@@ -12,43 +12,40 @@ import java.time.ZoneId;
 import java.util.List;
 
 @Service
-public class ServiceEntryServiceImpl {
+public class ServiceEntryServiceImpl implements ServiceEntryService {
 
-    private final ServiceEntryRepository entryRepo;
-    private final VehicleRepository vehicleRepo;
-    private final GarageRepository garageRepo;
+    @Autowired
+    private ServiceEntryRepository repository;
 
-    public ServiceEntryServiceImpl(
-        ServiceEntryRepository e, VehicleRepository v, GarageRepository g) {
-        this.entryRepo = e;
-        this.vehicleRepo = v;
-        this.garageRepo = g;
-    }
-
+    @Override
     public ServiceEntry createServiceEntry(ServiceEntry entry) {
-
-        Vehicle v = vehicleRepo.findById(entry.getVehicle().getId())
-            .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
-
-        if (!v.getActive())
-            throw new IllegalArgumentException("active vehicles");
-
-        Garage g = garageRepo.findById(entry.getGarage().getId())
-            .orElseThrow(() -> new EntityNotFoundException("Garage not found"));
-
-        if (entry.getServiceDate().isAfter(LocalDate.now()))
-            throw new IllegalArgumentException("future");
-
-        entryRepo.findTopByVehicleOrderByOdometerReadingDesc(v)
-            .ifPresent(last -> {
-                if (entry.getOdometerReading() < last.getOdometerReading())
-                    throw new IllegalArgumentException(">=");
-            });
-
-        return entryRepo.save(entry);
+        LocalDate serviceLocalDate = entry.getServiceDate().toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        if (serviceLocalDate.isAfter(LocalDate.now())) {
+            throw new RuntimeException("Service date cannot be in the future");
+        }
+        return repository.save(entry);
     }
 
-    public List<ServiceEntry> getEntriesForVehicle(Long vehicleId) {
-        return entryRepo.findByVehicleId(vehicleId);
+    @Override
+    public ServiceEntry getServiceEntryById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<ServiceEntry> getEntriesForVehicle(String vehicle) {
+        return repository.findAll()
+                .stream()
+                .filter(e -> e.getVehicle().equals(vehicle))
+                .toList();
+    }
+
+    @Override
+    public List<ServiceEntry> getEntriesByGarage(String garage) {
+        return repository.findAll()
+                .stream()
+                .filter(e -> e.getGarage().equals(garage))
+                .toList();
     }
 }

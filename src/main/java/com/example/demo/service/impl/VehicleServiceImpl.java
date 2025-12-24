@@ -10,37 +10,40 @@ import jakarta.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Service
-public class VehicleServiceImpl {
+public class VehicleServiceImpl implements VehicleService {
 
-    private final VehicleRepository repo;
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
-    public VehicleServiceImpl(VehicleRepository repo) {
-        this.repo = repo;
+    @Override
+    public Vehicle createVehicle(Vehicle vehicle) {
+        vehicle.setActive(true);
+        return vehicleRepository.save(vehicle);
     }
 
-    public Vehicle createVehicle(Vehicle v) {
-        if (repo.findByVin(v.getVin()).isPresent())
-            throw new IllegalArgumentException("VIN already exists");
-        return repo.save(v);
-    }
-
+    @Override
     public Vehicle getVehicleById(Long id) {
-        return repo.findById(id)
-            .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
+        return vehicleRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
     }
 
-    public Vehicle getVehicleByVin(String vin) {
-        return repo.findByVin(vin)
-            .orElseThrow(() -> new EntityNotFoundException("Vehicle not found"));
+    @Override
+    public List<Vehicle> getVehicleByVin(String vin) {
+        return vehicleRepository.findByVin(vin);
     }
 
+    @Override
     public List<Vehicle> getVehiclesByOwner(Long ownerId) {
-        return repo.findByOwnerId(ownerId);
+        return vehicleRepository.findAll()
+                .stream()
+                .filter(v -> ownerId.equals(v.getOwnerId()))
+                .toList();
     }
 
-    public void deactivateVehicle(Long id) {
-        Vehicle v = getVehicleById(id);
-        v.setActive(false);
-        repo.save(v);
+    @Override
+    public Vehicle deactivateVehicle(Long id) {
+        Vehicle vehicle = getVehicleById(id);
+        vehicle.setActive(false);
+        return vehicleRepository.save(vehicle);
     }
 }

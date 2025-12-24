@@ -11,24 +11,26 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServicePartServiceImpl {
+public class ServicePartServiceImpl implements ServicePartService {
 
-    private final ServicePartRepository partRepo;
-    private final ServiceEntryRepository entryRepo;
+    @Autowired
+    private ServicePartRepository servicePartRepository;
 
-    public ServicePartServiceImpl(ServicePartRepository p, ServiceEntryRepository e) {
-        this.partRepo = p;
-        this.entryRepo = e;
+    @Override
+    public ServicePart createServicePart(ServicePart servicePart) {
+        if (servicePart.getQuantity() <= 0) {
+            throw new IllegalArgumentException("Quantity must be greater than 0");
+        }
+        return servicePartRepository.save(servicePart);
     }
 
-    public ServicePart createPart(ServicePart part) {
+    @Override
+    public ServicePart getPartById(Long id) {
+        return servicePartRepository.findById(id).orElse(null);
+    }
 
-        entryRepo.findById(part.getServiceEntry().getId())
-            .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
-
-        if (part.getQuantity() <= 0)
-            throw new IllegalArgumentException("Quantity");
-
-        return partRepo.save(part);
+    @Override
+    public List<ServicePart> getPartsForEntry(String serviceEntry) {
+        return servicePartRepository.findByServiceEntry(serviceEntry);
     }
 }

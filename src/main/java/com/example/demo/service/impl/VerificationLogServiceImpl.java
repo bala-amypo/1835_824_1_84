@@ -9,23 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class VerificationLogServiceImpl {
+public class VerificationLogServiceImpl implements VerificationLogService {
 
-    private final VerificationLogRepository repo;
-    private final ServiceEntryRepository entryRepo;
+    @Autowired
+    private VerificationLogRepository repository;
 
-    public VerificationLogServiceImpl(
-        VerificationLogRepository r, ServiceEntryRepository e) {
-        this.repo = r;
-        this.entryRepo = e;
+    @Override
+    public VerificationLog createLog(VerificationLog log) {
+        return repository.save(log);
     }
 
-    public VerificationLog createLog(VerificationLog log) {
+    @Override
+    public VerificationLog getLogById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 
-        entryRepo.findById(log.getServiceEntry().getId())
-            .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
-
-        log.setVerifiedAt(LocalDateTime.now());
-        return repo.save(log);
+    @Override
+    public List<VerificationLog> getLogsForEntry(Long entryId) {
+        return repository.findByEntryId(entryId);
     }
 }
