@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 @Entity
 public class Vehicle{
     @Id
-    @Builder
     private Long id;
     private String vin;
     private String make;

@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 public class User {
 
     @Id
-    @Builder
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

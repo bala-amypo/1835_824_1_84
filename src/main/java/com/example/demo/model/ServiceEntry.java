@@ -11,7 +11,6 @@ import java.util.Date;
 public class ServiceEntry {
 
     @Id
-    @Builder
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
