@@ -47,6 +47,6 @@ public class ServicePartServiceImpl implements ServicePartService {
 
     @Override
     public List<ServicePart> getPartsForEntry(Long serviceEntryId) {
-        return servicePartRepository.findByServiceEntryId(serviceEntryId);
+        return servicePartRepository.findByServiceEntry_Id(serviceEntryId);
     }
 }
