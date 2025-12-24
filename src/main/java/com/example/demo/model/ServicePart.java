@@ -2,9 +2,13 @@ package com.example.demo.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import java.math.BigDecimal;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+
 @Entity
 public class ServicePart{
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String serviceEntry;
     private String partName;
