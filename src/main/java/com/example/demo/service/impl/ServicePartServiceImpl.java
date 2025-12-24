@@ -26,7 +26,6 @@ public class ServicePartServiceImpl implements ServicePartService {
 
     @Override
     public ServicePart createPart(ServicePart part) {
-
         Long entryId = part.getServiceEntry().getId();
 
         ServiceEntry entry = serviceEntryRepository.findById(entryId)
