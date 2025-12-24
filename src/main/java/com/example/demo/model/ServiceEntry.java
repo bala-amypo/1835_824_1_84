@@ -24,7 +24,7 @@ public class ServiceEntry {
 
     private String serviceType;
     private LocalDate serviceDate;
-    private Integer odometerReading;
+    private int odometerReading;
 
 
     public ServiceEntry() {
@@ -36,7 +36,7 @@ public class ServiceEntry {
             Garage garage,
             String serviceType,
             LocalDate serviceDate,
-            Integer odometerReading) {
+            int odometerReading) {
 
         this.vehicle = vehicle;
         this.garage = garage;
@@ -86,11 +86,11 @@ public class ServiceEntry {
         this.serviceDate = serviceDate;
     }
 
-    public Integer getOdometerReading() {
+    public int getOdometerReading() {
         return odometerReading;
     }
 
-    public void setOdometerReading(Integer odometerReading) {
+    public void setOdometerReading(int odometerReading) {
         this.odometerReading = odometerReading;
     }
 }
