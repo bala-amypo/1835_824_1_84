@@ -26,19 +26,19 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public List<Vehicle> getVehicleByVin(String vin) {
-        return vehicleRepository.findByVin(vin); // Must return List<Vehicle>
+        return vehicleRepository.findByVin(vin); // Return List<Vehicle>
     }
 
     @Override
     public List<Vehicle> getVehiclesByOwner(Long ownerId) {
-        return vehicleRepository.findByOwnerId(ownerId); // Must return List<Vehicle>
+        return vehicleRepository.findByOwnerId(ownerId); // Return List<Vehicle>
     }
 
     @Override
     public Vehicle deactivateVehicle(Long id) {
         Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
         if (vehicle != null) {
-            vehicle.setActive(false); // Assuming Vehicle has 'active' boolean field
+            vehicle.setActive(false); // Vehicle must have boolean field 'active'
             vehicleRepository.save(vehicle);
         }
         return vehicle;
