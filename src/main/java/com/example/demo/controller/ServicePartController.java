@@ -31,7 +31,7 @@ public class ServicePartController {
     }
 
     @GetMapping("/entry/{entryId}")
-    public List<ServicePart> getPartsForEntry(@PathVariable Long entryId) {
+    public List<ServicePart> getPartsForEntry(@PathVariable String entryId) {
         return servicePartService.getPartsForEntry(entryId);
     }
 }
