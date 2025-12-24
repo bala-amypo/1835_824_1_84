@@ -10,44 +10,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class GarageServiceImpl implements GarageService {
+public class GarageServiceImpl {
 
-    @Autowired
-    private GarageRepository garageRepository;
+    private final GarageRepository repo;
 
-    @Override
-    public Garage createGarage(Garage garage) {
-        garageRepository.findByGaragename(garage.getGaragename())
-                .ifPresent(g -> {
-                    throw new RuntimeException("Garage name already exists");
-                });
-        return garageRepository.save(garage);
+    public GarageServiceImpl(GarageRepository repo) {
+        this.repo = repo;
     }
 
-    @Override
-    public Garage updateGarage(Long id, Garage garage) {
-        Garage existing = getGarageById(id);
-        existing.setGaragename(garage.getGaragename());
-        existing.setAddress(garage.getAddress());
-        existing.setContactNumber(garage.getContactNumber());
-        return garageRepository.save(existing);
-    }
-
-    @Override
-    public Garage getGarageById(Long id) {
-        return garageRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Garage not found"));
-    }
-
-    @Override
-    public List<Garage> getAllGarages() {
-        return garageRepository.findAll();
-    }
-
-    @Override
-    public Garage deactivateGarage(Long id) {
-        Garage garage = getGarageById(id);
-        garage.setActive(false);
-        return garageRepository.save(garage);
+    public Garage createGarage(Garage g) {
+        if (repo.findByGarageName(g.getGarageName()).isPresent())
+            throw new IllegalArgumentException("already exists");
+        return repo.save(g);
     }
 }
