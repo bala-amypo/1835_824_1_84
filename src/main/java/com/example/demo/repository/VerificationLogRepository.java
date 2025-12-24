@@ -1,11 +1,7 @@
 package com.example.demo.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.model.VerificationLog;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VerificationLogRepository
-        extends JpaRepository<VerificationLog, Long> {
-
-    List<VerificationLog> findByEntryId(Long entryId);
+public interface VerificationLogRepository extends JpaRepository<VerificationLog, Long> {
 }

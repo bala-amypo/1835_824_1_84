@@ -4,14 +4,9 @@ import com.example.demo.model.Vehicle;
 import java.util.List;
 
 public interface VehicleService {
-
     Vehicle createVehicle(Vehicle vehicle);
-
     Vehicle getVehicleById(Long id);
-
-    List<Vehicle> getVehicleByVin(String vin);
-
+    Vehicle getVehicleByVin(String vin);
     List<Vehicle> getVehiclesByOwner(Long ownerId);
-
-    Vehicle deactivateVehicle(Long id);
+    void deactivateVehicle(Long id);
 }
