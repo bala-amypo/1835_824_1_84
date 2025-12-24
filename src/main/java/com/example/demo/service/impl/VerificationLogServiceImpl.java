@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.model.VerificationLog;
 import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.service.VerificationLogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,11 @@ import java.util.List;
 @Service
 public class VerificationLogServiceImpl implements VerificationLogService {
 
-    @Autowired
-    private VerificationLogRepository repository;
+    private final VerificationLogRepository repository;
+
+    public VerificationLogServiceImpl(VerificationLogRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public VerificationLog createLog(VerificationLog log) {
@@ -26,6 +28,7 @@ public class VerificationLogServiceImpl implements VerificationLogService {
 
     @Override
     public List<VerificationLog> getLogsForEntry(Long entryId) {
-        return repository.findByEntryId(entryId);
+        
+        return repository.findByEntry_Id(entryId);
     }
 }
