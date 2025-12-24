@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 @Entity
 public class ServicePart{
     @Id
+    @Builder
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String serviceEntry;

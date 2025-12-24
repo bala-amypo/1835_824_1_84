@@ -10,6 +10,7 @@ import java.sql.Timestamp;
 public class VerificationLog {
 
     @Id
+    @Builder
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
