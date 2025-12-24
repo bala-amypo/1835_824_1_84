@@ -1,58 +1,64 @@
 package com.example.demo.model;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-@Entity
-public class Garage{
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    private String garagename;
-    private String address;
-    private String contactNumber;
-    private Boolean active;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-    public Long getId(){
+@Entity
+@Table(name = "garages")
+public class Garage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String garageName;
+    private String address;
+    private Boolean active = true;
+
+   
+    public Garage() {
+    }
+
+    
+    public Garage(String garageName, String address, Boolean active) {
+        this.garageName = garageName;
+        this.address = address;
+        this.active = active;
+    }
+
+    // Getters & Setters
+    public Long getId() {
         return id;
     }
-    public void setId(long id){
-        this.id=id;
+
+    public void setId(Long id) {
+        this.id = id;
     }
-     public String getGaragename(){
-        return garagename;
+
+    public String getGarageName() {
+        return garageName;
     }
-    public void setGaragename(String garagename){
-        this.garagename=garagename;
+
+    public void setGarageName(String garageName) {
+        this.garageName = garageName;
     }
-    public String getAddress(){
+
+    public String getAddress() {
         return address;
     }
-    public void setAddress(String address){ 
-        this.address=address;
+
+    public void setAddress(String address) {
+        this.address = address;
     }
-    public String getContactNumber(){
-        return contactNumber;
-    }
-    public void setContactNumber(String contactNumber){
-        this.contactNumber=contactNumber;
-    }
-    public Boolean getActive(){
+
+    public Boolean getActive() {
         return active;
     }
-    public void setActive(Boolean active){
-        this.active=active;
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
-
-    public Garage(Long id, String garagename, String address, String contactNumber, Boolean active ){
-        this.id=id;
-        this.garagename=garagename;
-         this.address=address;
-         this.contactNumber=contactNumber;
-         this.active=active;
-     }
-
-    public Garage(){
-
-     }
 }
