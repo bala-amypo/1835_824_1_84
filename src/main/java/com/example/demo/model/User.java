@@ -4,29 +4,23 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "vehicles")
+@Table(name = "users")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Vehicle {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String vin;
+    @Column(nullable = false, unique = true)
+    private String email;
 
     @Column(nullable = false)
-    private String make;
+    private String password;
 
     @Column(nullable = false)
-    private String model;
-
-    @Column(nullable = false)
-    private Long ownerId;
-
-    @Builder.Default
-    private Boolean active = true;
+    private String role;
 }
