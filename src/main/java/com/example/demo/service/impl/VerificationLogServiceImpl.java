@@ -16,7 +16,6 @@ public class VerificationLogServiceImpl implements VerificationLogService {
     private final VerificationLogRepository verificationLogRepository;
     private final ServiceEntryRepository serviceEntryRepository;
 
-    // ✅ Constructor injection REQUIRED
     public VerificationLogServiceImpl(VerificationLogRepository verificationLogRepository,
                                       ServiceEntryRepository serviceEntryRepository) {
         this.verificationLogRepository = verificationLogRepository;
