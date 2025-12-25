@@ -1,20 +1,25 @@
-package com.example.demo.config;
+package com.example.demo.servlet;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
+@WebServlet(urlPatterns = "/health")
 public class SimpleHealthServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        resp.setStatus(200);
-        resp.setContentType("text/plain");
-        PrintWriter writer = resp.getWriter();
+        response.setStatus(200);
+        response.setContentType("text/plain");
+
+        PrintWriter writer = response.getWriter();
         writer.write("OK");
         writer.flush();
     }
