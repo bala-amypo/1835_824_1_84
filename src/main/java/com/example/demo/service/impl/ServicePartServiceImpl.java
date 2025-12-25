@@ -6,30 +6,27 @@ import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.ServicePartRepository;
 import com.example.demo.service.ServicePartService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-@Service
 public class ServicePartServiceImpl implements ServicePartService {
 
     private final ServicePartRepository servicePartRepository;
     private final ServiceEntryRepository serviceEntryRepository;
 
-    public ServicePartServiceImpl(
-            ServicePartRepository servicePartRepository,
-            ServiceEntryRepository serviceEntryRepository
-    ) {
+    // ✅ Constructor injection REQUIRED
+    public ServicePartServiceImpl(ServicePartRepository servicePartRepository,
+                                  ServiceEntryRepository serviceEntryRepository) {
         this.servicePartRepository = servicePartRepository;
         this.serviceEntryRepository = serviceEntryRepository;
     }
 
     @Override
     public ServicePart createPart(ServicePart part) {
-        Long entryId = part.getServiceEntry().getId();
 
-        ServiceEntry entry = serviceEntryRepository.findById(entryId)
-                .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
+        Long serviceEntryId = part.getServiceEntry().getId();
+
+        ServiceEntry entry = serviceEntryRepository.findById(serviceEntryId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("ServiceEntry not found"));
 
         if (part.getQuantity() <= 0) {
             throw new IllegalArgumentException("Quantity must be positive");
@@ -37,16 +34,5 @@ public class ServicePartServiceImpl implements ServicePartService {
 
         part.setServiceEntry(entry);
         return servicePartRepository.save(part);
-    }
-
-    @Override
-    public ServicePart getPartById(Long id) {
-        return servicePartRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("ServicePart not found"));
-    }
-
-    @Override
-    public List<ServicePart> getPartsForEntry(Long serviceEntryId) {
-        return servicePartRepository.findByServiceEntry_Id(serviceEntryId);
     }
 }

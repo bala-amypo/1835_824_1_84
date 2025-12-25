@@ -1,34 +1,38 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.ServiceEntry;
 import com.example.demo.model.VerificationLog;
+import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.repository.VerificationLogRepository;
 import com.example.demo.service.VerificationLogService;
 import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-import java.util.List;
 
-@Service
+import java.time.LocalDateTime;
+
 public class VerificationLogServiceImpl implements VerificationLogService {
 
-    private final VerificationLogRepository repository;
+    private final VerificationLogRepository verificationLogRepository;
+    private final ServiceEntryRepository serviceEntryRepository;
 
-    public VerificationLogServiceImpl(VerificationLogRepository repository) {
-        this.repository = repository;
+    // ✅ Constructor injection REQUIRED
+    public VerificationLogServiceImpl(VerificationLogRepository verificationLogRepository,
+                                      ServiceEntryRepository serviceEntryRepository) {
+        this.verificationLogRepository = verificationLogRepository;
+        this.serviceEntryRepository = serviceEntryRepository;
     }
 
     @Override
     public VerificationLog createLog(VerificationLog log) {
-        return repository.save(log);
-    }
 
-    @Override
-    public VerificationLog getLogById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("VerificationLog not found"));
-    }
+        Long serviceEntryId = log.getServiceEntry().getId();
 
-    @Override
-    public List<VerificationLog> getLogsForEntry(Long entryId) {
-        return repository.findByServiceEntryId(entryId);
+        ServiceEntry entry = serviceEntryRepository.findById(serviceEntryId)
+                .orElseThrow(() ->
+                        new EntityNotFoundException("ServiceEntry not found"));
+
+        log.setServiceEntry(entry);
+        log.setVerifiedAt(LocalDateTime.now());
+
+        return verificationLogRepository.save(log);
     }
 }
