@@ -1,8 +1,20 @@
+package com.example.demo.service.impl;
+
+import com.example.demo.model.VerificationLog;
+import com.example.demo.repository.VerificationLogRepository;
+import com.example.demo.service.VerificationLogService;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
 @Service
 public class VerificationLogServiceImpl implements VerificationLogService {
 
-    @Autowired
-    private VerificationLogRepository repository;
+    private final VerificationLogRepository repository;
+
+    public VerificationLogServiceImpl(VerificationLogRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public VerificationLog createLog(VerificationLog log) {
@@ -10,7 +22,13 @@ public class VerificationLogServiceImpl implements VerificationLogService {
     }
 
     @Override
-    public List<VerificationLog> getLogsForEntry(Long serviceEntryId) {
-        return repository.findByServiceEntryId(serviceEntryId);
+    public VerificationLog getLogById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("VerificationLog not found"));
+    }
+
+    @Override
+    public List<VerificationLog> getLogsForEntry(Long entryId) {
+        return repository.findByServiceEntryId(entryId);
     }
 }

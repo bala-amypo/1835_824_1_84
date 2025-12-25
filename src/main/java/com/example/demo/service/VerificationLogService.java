@@ -9,5 +9,5 @@ public interface VerificationLogService {
 
     VerificationLog getLogById(Long id);
 
-    List<VerificationLog> getLogsForEntry(Long entryId);
+    List<VerificationLog> getLogsForEntry(Long serviceEntryId);
 }
