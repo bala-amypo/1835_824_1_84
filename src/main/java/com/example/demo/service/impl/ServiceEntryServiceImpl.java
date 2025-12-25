@@ -1,7 +1,6 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.model.ServiceEntry;
-import com.example.demo.model.Vehicle;
 import com.example.demo.repository.ServiceEntryRepository;
 import com.example.demo.service.ServiceEntryService;
 import jakarta.persistence.EntityNotFoundException;
@@ -37,7 +36,10 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
 
     @Override
     public List<ServiceEntry> getEntriesByGarage(Long garageId) {
-        return serviceEntryRepository.findByGarageIdAndOdometerGreaterThanEqual(garageId, 0);
+        return serviceEntryRepository.findByGarageIdAndOdometerReadingGreaterThanEqual(
+                garageId,
+                0
+        );
     }
 
     @Override
