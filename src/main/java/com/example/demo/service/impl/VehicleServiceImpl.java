@@ -6,7 +6,9 @@ import com.example.demo.service.VehicleService;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service  
 public class VehicleServiceImpl implements VehicleService {
 
     private final VehicleRepository vehicleRepository;

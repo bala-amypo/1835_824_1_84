@@ -8,7 +8,9 @@ import com.example.demo.service.VerificationLogService;
 import jakarta.persistence.EntityNotFoundException;
 
 import java.time.LocalDateTime;
+import org.springframework.stereotype.Service;
 
+@Service  
 public class VerificationLogServiceImpl implements VerificationLogService {
 
     private final VerificationLogRepository verificationLogRepository;
