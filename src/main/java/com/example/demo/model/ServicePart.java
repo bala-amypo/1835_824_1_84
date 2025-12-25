@@ -1,67 +1,26 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "service_parts")
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ServicePart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private ServiceEntry serviceEntry;
 
+    @Column(nullable = false)
     private String partName;
+
+    @Column(nullable = false)
     private Integer quantity;
-
-   
-    public ServicePart() {
-    }
-
-   
-    public ServicePart(ServiceEntry serviceEntry, String partName, Integer quantity) {
-        this.serviceEntry = serviceEntry;
-        this.partName = partName;
-        this.quantity = quantity;
-    }
-
-    // Getters & Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public ServiceEntry getServiceEntry() {
-        return serviceEntry;
-    }
-
-    public void setServiceEntry(ServiceEntry serviceEntry) {
-        this.serviceEntry = serviceEntry;
-    }
-
-    public String getPartName() {
-        return partName;
-    }
-
-    public void setPartName(String partName) {
-        this.partName = partName;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 }
