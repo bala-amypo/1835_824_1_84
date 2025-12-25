@@ -6,6 +6,5 @@ import java.util.List;
 
 public interface VerificationLogRepository extends JpaRepository<VerificationLog, Long> {
 
-    
-    List<VerificationLog> findByEntry_Id(Long entryId);
+    List<VerificationLog> findByServiceEntryId(Long serviceEntryId);
 }
