@@ -1,22 +1,11 @@
-package com.example.demo.service.impl;
-
-import com.example.demo.model.ServiceEntry;
-import com.example.demo.repository.ServiceEntryRepository;
-import com.example.demo.service.ServiceEntryService;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.List;
-
 @Service
 public class ServiceEntryServiceImpl implements ServiceEntryService {
 
-    private final ServiceEntryRepository serviceEntryRepository;
+    @Autowired
+    private ServiceEntryRepository serviceEntryRepository;
 
-    public ServiceEntryServiceImpl(ServiceEntryRepository serviceEntryRepository) {
-        this.serviceEntryRepository = serviceEntryRepository;
-    }
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
     @Override
     public ServiceEntry createServiceEntry(ServiceEntry entry) {
@@ -25,8 +14,7 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
 
     @Override
     public ServiceEntry getServiceEntryById(Long id) {
-        return serviceEntryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("ServiceEntry not found"));
+        return serviceEntryRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -36,10 +24,8 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
 
     @Override
     public List<ServiceEntry> getEntriesByGarage(Long garageId) {
-        return serviceEntryRepository.findByGarageIdAndOdometerReadingGreaterThanEqual(
-                garageId,
-                0
-        );
+        return serviceEntryRepository
+                .findByGarageIdAndOdometerReadingGreaterThanEqual(garageId, 0);
     }
 
     @Override
@@ -48,10 +34,7 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
             LocalDate from,
             LocalDate to
     ) {
-        return serviceEntryRepository.findByVehicleIdAndServiceDateBetween(
-                vehicleId,
-                from,
-                to
-        );
+        return serviceEntryRepository
+                .findByVehicleIdAndServiceDateBetween(vehicleId, from, to);
     }
 }
