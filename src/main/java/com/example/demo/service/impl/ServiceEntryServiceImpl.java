@@ -27,21 +27,10 @@ public class ServiceEntryServiceImpl implements ServiceEntryService {
     }
 
     public List<ServiceEntry> getEntriesByGarage(Long garageId) {
-        return serviceEntryRepository.findByGarageIdAndOdometerReadingGreaterThanEqual(
-                garageId,
-                0
-        );
+        return serviceEntryRepository.findByGarageIdAndOdometerReadingGreaterThanEqual(garageId, 0);
     }
 
-    public List<ServiceEntry> getEntriesByVehicleAndDateRange(
-            Long vehicleId,
-            LocalDate from,
-            LocalDate to
-    ) {
-        return serviceEntryRepository.findByVehicleIdAndServiceDateBetween(
-                vehicleId,
-                from,
-                to
-        );
+    public List<ServiceEntry> getEntriesByVehicleAndDateRange(Long vehicleId, LocalDate from, LocalDate to) {
+        return serviceEntryRepository.findByVehicleIdAndServiceDateBetween(vehicleId, from, to);
     }
 }
