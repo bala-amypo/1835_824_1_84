@@ -1,48 +1,40 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.ServiceEntry;
-import com.example.demo.repository.ServiceEntryRepository;
-import com.example.demo.service.ServiceEntryService;
+import com.example.demo.model.Vehicle;
+import com.example.demo.repository.VehicleRepository;
+import com.example.demo.service.VehicleService;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 @Service
-public class ServiceEntryServiceImpl implements ServiceEntryService {
+public class VehicleServiceImpl implements VehicleService {
 
-    private final ServiceEntryRepository repository;
+    @Autowired
+    private VehicleRepository vehicleRepository;
 
-    public ServiceEntryServiceImpl(ServiceEntryRepository repository) {
-        this.repository = repository;
+    public Vehicle createVehicle(Vehicle vehicle) {
+        return vehicleRepository.save(vehicle);
     }
 
-    @Override
-    public ServiceEntry createServiceEntry(ServiceEntry entry) {
-        return repository.save(entry);
+    public Vehicle getVehicleById(Long id) {
+        return vehicleRepository.findById(id).orElse(null);
     }
 
-    @Override
-    public ServiceEntry getServiceEntryById(Long id) {
-        return repository.findById(id).orElse(null);
+    public List<Vehicle> getVehicleByVin(String vin) {
+        return vehicleRepository.findByVin(vin);
     }
 
-    @Override
-    public List<ServiceEntry> getEntriesForVehicle(Long vehicleId) {
-        return repository.findByVehicleId(vehicleId);
+    public List<Vehicle> getVehiclesByOwner(Long ownerId) {
+        return vehicleRepository.findByOwnerId(ownerId);
     }
 
-    @Override
-    public List<ServiceEntry> getEntriesByGarage(Long garageId) {
-        return repository.findByGarageAndMinOdometer(garageId, 0);
-    }
-
-    @Override
-    public List<ServiceEntry> getEntriesByVehicleAndDateRange(
-            Long vehicleId,
-            LocalDate from,
-            LocalDate to
-    ) {
-        return repository.findByVehicleAndDateRange(vehicleId, from, to);
+    public Vehicle deactivateVehicle(Long id) {
+        Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
+        if (vehicle == null) {
+            return null;
+        }
+        vehicle.setActive(false);
+        return vehicleRepository.save(vehicle);
     }
 }
