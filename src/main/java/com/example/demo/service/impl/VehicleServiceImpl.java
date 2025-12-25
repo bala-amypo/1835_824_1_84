@@ -1,46 +1,48 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Vehicle;
-import com.example.demo.repository.VehicleRepository;
-import com.example.demo.service.VehicleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.demo.model.ServiceEntry;
+import com.example.demo.repository.ServiceEntryRepository;
+import com.example.demo.service.ServiceEntryService;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class VehicleServiceImpl implements VehicleService {
+public class ServiceEntryServiceImpl implements ServiceEntryService {
 
-    @Autowired
-    private VehicleRepository vehicleRepository;
+    private final ServiceEntryRepository repository;
 
-    @Override
-    public Vehicle createVehicle(Vehicle vehicle) {
-        return vehicleRepository.save(vehicle);
+    public ServiceEntryServiceImpl(ServiceEntryRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public Vehicle getVehicleById(Long id) {
-        return vehicleRepository.findById(id).orElse(null);
+    public ServiceEntry createServiceEntry(ServiceEntry entry) {
+        return repository.save(entry);
     }
 
     @Override
-    public List<Vehicle> getVehicleByVin(String vin) {
-        return vehicleRepository.findByVin(vin); // Return List<Vehicle>
+    public ServiceEntry getServiceEntryById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @Override
-    public List<Vehicle> getVehiclesByOwner(Long ownerId) {
-        return vehicleRepository.findByOwnerId(ownerId); // Return List<Vehicle>
+    public List<ServiceEntry> getEntriesForVehicle(Long vehicleId) {
+        return repository.findByVehicleId(vehicleId);
     }
 
     @Override
-    public Vehicle deactivateVehicle(Long id) {
-        Vehicle vehicle = vehicleRepository.findById(id).orElse(null);
-        if (vehicle != null) {
-            vehicle.setActive(false); // Vehicle must have boolean field 'active'
-            vehicleRepository.save(vehicle);
-        }
-        return vehicle;
+    public List<ServiceEntry> getEntriesByGarage(Long garageId) {
+        return repository.findByGarageAndMinOdometer(garageId, 0);
+    }
+
+    @Override
+    public List<ServiceEntry> getEntriesByVehicleAndDateRange(
+            Long vehicleId,
+            LocalDate from,
+            LocalDate to
+    ) {
+        return repository.findByVehicleAndDateRange(vehicleId, from, to);
     }
 }

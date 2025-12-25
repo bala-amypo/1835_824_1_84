@@ -14,14 +14,13 @@ public interface ServiceEntryRepository extends JpaRepository<ServiceEntry, Long
 
     List<ServiceEntry> findByVehicleId(Long vehicleId);
 
-    List<ServiceEntry> findByGarageIdAndOdometerReadingGreaterThanEqual(
-            Long garageId,
-            int odometerReading
-    );
+   
+    List<ServiceEntry> findByGarageAndMinOdometer(Long garageId, int minOdometer);
 
-    List<ServiceEntry> findByVehicleIdAndServiceDateBetween(
+   
+    List<ServiceEntry> findByVehicleAndDateRange(
             Long vehicleId,
-            LocalDate startDate,
-            LocalDate endDate
+            LocalDate from,
+            LocalDate to
     );
 }
